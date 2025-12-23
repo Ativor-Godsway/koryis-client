@@ -4,8 +4,6 @@ import { studentApi } from "./StudentApi";
 import { gradeApi } from "./GradeApi";
 import { studentQuestionsApi } from "./studentQuestionsApi";
 import { studentNotesApi } from "./StudentNoteApi";
-import { messageApi } from "./MessageApi";
-import messageReducer from "./messageSlice";
 import { requestApi } from "./SchoolRequestApi";
 import { parentApi } from "./ParentApi";
 import { teacherApi } from "./TeacherApi";
@@ -13,14 +11,11 @@ import { schoolApi } from "./SchoolApi";
 
 export const store = configureStore({
   reducer: {
-    message: messageReducer,
-
     [taskApi.reducerPath]: taskApi.reducer,
     [studentApi.reducerPath]: studentApi.reducer,
     [gradeApi.reducerPath]: gradeApi.reducer,
     [studentQuestionsApi.reducerPath]: studentQuestionsApi.reducer,
     [studentNotesApi.reducerPath]: studentNotesApi.reducer,
-    [messageApi.reducerPath]: messageApi.reducer,
     [requestApi.reducerPath]: requestApi.reducer,
     [parentApi.reducerPath]: parentApi.reducer,
     [teacherApi.reducerPath]: teacherApi.reducer,
@@ -33,7 +28,6 @@ export const store = configureStore({
       .concat(gradeApi.middleware)
       .concat(studentQuestionsApi.middleware)
       .concat(studentNotesApi.middleware)
-      .concat(messageApi.middleware)
       .concat(requestApi.middleware)
       .concat(parentApi.middleware)
       .concat(teacherApi.middleware)
