@@ -115,7 +115,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="p-6 space-y-10">
+    <div className="p-1 md:p-6 space-y-10">
       {/* Summary Cards */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         <div className="bg-base-200 shadow-md rounded-lg p-3">

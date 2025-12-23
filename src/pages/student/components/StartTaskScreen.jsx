@@ -20,9 +20,9 @@ const StartTaskScreen = ({ totalQuestions = 10, level = 1, onStart }) => {
   return (
     <div className="min-h-[80vh] flex flex-col justify-center items-center text-center relative overflow-hidden px-4">
       {/* Floating background shapes */}
-      <div className="absolute top-10 left-10 w-20 h-20 bg-blue-200 rounded-full blur-xl animate-pulse"></div>
-      <div className="absolute top-20 right-16 w-40 h-24 bg-purple-200 rounded-full blur-xl animate-pulse"></div>
-      <div className="absolute bottom-24 left-20 w-28 h-28 bg-green-200 rounded-full blur-xl animate-pulse"></div>
+      <div className="absolute top-10 left-10 w-20 h-20 bg-blue-200 rounded-full blur-xl animate-pulse hidden md:flex"></div>
+      <div className="absolute top-20 right-16 w-40 h-24 bg-purple-200 rounded-full blur-xl animate-pulse hidden md:flex"></div>
+      <div className="absolute bottom-24 left-20 w-28 h-28 bg-green-200 rounded-full blur-xl animate-pulse hidden md:flex"></div>
 
       {/* Game Title */}
       <h1 className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text mb-6">

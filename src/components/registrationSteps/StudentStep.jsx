@@ -149,6 +149,7 @@ export default function ChildStep() {
                   })}
                   className={`select  `}
                 >
+                  <option value="">Select Your City</option>
                   {cities.map((city) => (
                     <option key={city}>{city}</option>
                   ))}

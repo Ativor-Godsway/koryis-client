@@ -80,7 +80,13 @@ export default function Navbar() {
     <div className="sticky top-0  z-50">
       <nav className="w-full bg-white border shadow-sm px-6 py-4 flex items-center justify-between rounded-3xl mb-3">
         <Link to={"/teacher/dashboard"}>
-          <h1 className="text-xl font-bold text-gray-800">Teacher Dashboard</h1>
+          <h1 className="flex md:hidden items-center text-xl gap-2">
+            <FaHome className=" text-3xl" />
+            Home
+          </h1>
+          <h1 className="text-xl font-bold text-gray-800 hidden md:flex">
+            Teacher Dashboard
+          </h1>
         </Link>
 
         <div>
@@ -102,17 +108,17 @@ export default function Navbar() {
                 d="M12 4v16m8-8H4"
               />
             </svg>
-            Assign New Task
+            Assign Task
           </Link>
 
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
               role="button"
-              className="flex items-center gap-2 px-4 py-2 rounded-full  hover:bg-gray-200 transition"
+              className="flex items-center gap-2 px-4 py-2 rounded-full  hover:bg-gray-200 transition border"
             >
               <IoPersonSharp className="text-xl" />
-              <span className="font-medium">Profile</span>
+              <span className="font-medium hidden md:flex ">Profile</span>
             </div>
 
             <div

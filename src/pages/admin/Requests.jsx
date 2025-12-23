@@ -54,7 +54,7 @@ export default function Requests() {
     return <p className="p-6 text-red-600">Failed to load requests</p>;
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="p-1 md:p-6 max-w-6xl mx-auto">
       <h1 className="text-3xl font-semibold mb-6 text-gray-800">
         School Access Requests
       </h1>

@@ -39,7 +39,7 @@ export default function CreateNewTeacher() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-2xl bg-gray-50 p-6 rounded-2xl shadow-lg space-y-4 mx-auto"
+      className="max-w-2xl bg-gray-50 p-2 m-2 md:p-6 rounded-2xl shadow-lg space-y-4 mx-auto"
     >
       <h2 className="text-xl font-semibold">Create Teacher</h2>
 

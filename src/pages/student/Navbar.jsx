@@ -170,7 +170,9 @@ export default function Navbar() {
               key={tab.name}
               to={tab.path}
               className={({ isActive }) =>
-                `flex items-center gap-1 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full text-lg font-medium
+                `flex ${
+                  tab.name === "Tasks" && "hidden md:flex"
+                } items-center gap-1 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full text-lg font-medium
              transition-all duration-300
              ${
                isActive
@@ -192,7 +194,9 @@ export default function Navbar() {
               key={tab.name}
               to={tab.path}
               className={({ isActive }) =>
-                `flex items-center gap-1 px-3 md:px-5 py-2 rounded-full
+                `flex ${
+                  tab.name === "Grades" && "hidden md:flex"
+                }  items-center gap-1 px-3 md:px-5 py-2 rounded-full
            text-base font-medium transition-all duration-300 border border-blue-50
            ${
              isActive
@@ -212,8 +216,9 @@ export default function Navbar() {
               role="button"
               className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-200 transition"
             >
-              <IoPersonSharp className="text-xl" />
-              <span className="font-medium">Profile</span>
+              <IoPersonSharp className="text-xl hidden md:flex" />
+              <IoMdMenu className="text-xl flex md:hidden" />
+              <span className="font-medium hidden md:flex">Profile</span>
             </div>
 
             <div
@@ -246,6 +251,20 @@ export default function Navbar() {
 
               {/* Actions */}
               <div className="space-y-2">
+                <Link
+                  to={"/student/tasks"}
+                  className="w-full md:hidden flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-gray-100 "
+                >
+                  <FaTasks size={16} />
+                  Tasks
+                </Link>
+                <Link
+                  to={"/student/grades"}
+                  className="w-full md:hidden flex  items-center gap-3 px-4 py-2 rounded-xl hover:bg-gray-100"
+                >
+                  <MdGrade size={16} />
+                  Grades
+                </Link>
                 <button
                   onClick={() => setShowEditModal(true)}
                   className="w-full flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-gray-100"

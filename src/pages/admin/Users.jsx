@@ -11,12 +11,12 @@ export default function Users() {
   };
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="p-2 md:p-6 max-w-6xl mx-auto">
       <h1 className="text-3xl font-semibold mb-6 text-gray-800">
         Users Management
       </h1>
 
-      <div className=" flex justify-between items-center  border-b mb-6">
+      <div className=" flex flex-col-reverse md:flex-row justify-end md:justify-between md:items-center items-end  border-b mb-6">
         {/* Tabs */}
         <div className="flex gap-4 pb-2 ">
           {["students", "parents", "teachers", "schools"].map((tab) => (

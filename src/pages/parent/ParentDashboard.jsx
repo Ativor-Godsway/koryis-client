@@ -155,7 +155,7 @@ export default function ParentDashboard() {
   }
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 pb-10">
       {/* DID YOU KNOW / FUN FACT */}
       <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-xl shadow-sm">
         <h3 className="text-lg font-semibold text-blue-700 mb-1">

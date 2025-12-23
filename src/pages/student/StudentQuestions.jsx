@@ -152,7 +152,7 @@ export default function StudentQuestionsPage() {
       submitGrade({
         student: studentId,
         task: questionsData._id,
-        topic: questionsData.topic,
+        topic: questionsData.topic.toLowerCase(),
         subTopic: questionsData.subTopic,
         score: Math.round((score / questions.length) * 100),
       }).catch(() => console.warn("Grade already submitted."));

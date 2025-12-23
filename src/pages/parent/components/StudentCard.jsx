@@ -48,7 +48,7 @@ export default function StudentCard({
   const avgGrade = getGrade(average);
 
   return (
-    <div className="bg-blue-50 rounded-2xl shadow-md border border-blue-300 overflow-hidden">
+    <div className="bg-blue-50 rounded-2xl shadow-md border border-blue-300 overflow-auto ">
       {/* Header */}
       <div className="p-6 border-b border-blue-200">
         <h2 className="text-xl font-bold">Student Report</h2>
@@ -56,7 +56,7 @@ export default function StudentCard({
       </div>
 
       {/* Table */}
-      <div className="p-6">
+      <div className="p-2 md:p-6">
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-blue-200">

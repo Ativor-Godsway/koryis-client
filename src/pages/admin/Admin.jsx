@@ -7,7 +7,7 @@ export default function Admin() {
       <Sidebar />
 
       {/* Main area */}
-      <div className="flex-1 p-8 overflow-auto">
+      <div className="flex-1 p-1 py-14 md:p-8 overflow-auto">
         <Outlet />
       </div>
     </div>

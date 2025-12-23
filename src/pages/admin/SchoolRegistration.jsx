@@ -83,7 +83,7 @@ export default function SchoolForm() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-white shadow-xl rounded-2xl">
+    <div className="max-w-5xl mx-auto p-2 md:p-6 bg-white shadow-xl rounded-2xl">
       <h1 className="text-3xl font-bold mb-6 text-blue-700">Register School</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
