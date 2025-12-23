@@ -1,0 +1,54 @@
+@import "@fontsource/opendyslexic";
+@import "@fontsource/opendyslexic/700.css";
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.bg-custom-gradient {
+  background: linear-gradient(135deg, var(--accent-teal) 0%, var(--accent-coral) 100%);
+}
+
+/* Tailwind global styles */
+.input, .select{
+  @apply w-full px-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none;
+}
+
+.error {
+  @apply text-red-600 text-sm mt-1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.input,
+.apple-input {
+  @apply w-full px-4 py-3 rounded-xl border border-gray-300 bg-white 
+         text-gray-900 placeholder-gray-400 focus:outline-none 
+         focus:ring-2 focus:ring-black/20 focus:border-black/40 
+         transition;
+}
+
+.apple-select {
+  @apply w-full px-4 py-3 rounded-xl border border-gray-300 bg-white
+         text-gray-900 focus:outline-none focus:ring-2 focus:ring-black/20;
+}
+
+.apple-error {
+  @apply text-red-500 text-sm;
+}
