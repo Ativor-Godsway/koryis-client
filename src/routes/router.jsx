@@ -25,14 +25,12 @@ import AssignTask from "../pages/teacher/AssignTask";
 //Parent Route Imports
 import Parent from "../pages/parent/Parent";
 import ParentDashboard from "../pages/parent/ParentDashboard";
-import Chat from "../pages/parent/Chat";
 import ParentProfile from "../pages/parent/ParentProfile";
 import ParentRoute from "./ParentRoute";
 import QuestionForm from "../pages/admin/QuestionForm";
 import PreviousTasks from "../pages/student/PreviousTasks";
 import TaskDetail from "../pages/student/TaskDetail";
 import StudentQuestionsPage from "../pages/student/StudentQuestions";
-import ChatLayout from "../components/chat/ChatLayout";
 
 //Admin Routes
 import Admin from "../pages/admin/Admin";
@@ -88,7 +86,6 @@ const router = createBrowserRouter([
           { path: "assign-task", element: <AssignTask /> },
           { path: "profile", element: <TeacherProfile /> },
           { path: "dashboard", element: <ParentDashboard /> },
-          { path: "chat", element: <ChatLayout /> },
         ],
       },
 
@@ -102,7 +99,6 @@ const router = createBrowserRouter([
         ),
         children: [
           { path: "dashboard", element: <ParentDashboard /> },
-          { path: "chat", element: <ChatLayout /> },
           { path: "profile", element: <ParentProfile /> },
         ],
       },
