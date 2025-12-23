@@ -3,6 +3,7 @@ import {
   useUpdateRequestStatusMutation,
 } from "../../redux/SchoolRequestApi";
 import { capitalizeFirstLetter } from "../../utils/capitalize";
+import { formatTaskDate } from "../../utils/formatDate";
 
 export default function Requests() {
   // Fetch requests from backend
@@ -92,6 +93,12 @@ export default function Requests() {
                 <div>
                   <p className="text-gray-500 text-sm">Local Authority</p>
                   <p className="text-gray-800">{req.localAuthority}</p>
+                </div>
+                <div>
+                  <p className="text-gray-500 text-sm">Sent At</p>
+                  <p className="text-gray-800">
+                    {formatTaskDate(req.createdAt)}
+                  </p>
                 </div>
               </div>
             </div>
