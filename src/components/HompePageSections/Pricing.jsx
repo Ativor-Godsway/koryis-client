@@ -1,11 +1,12 @@
 import React from "react";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
-import SubscribeButton from "../SubscribeButton";
 
 const plans = [
   {
     title: "Individual Plan",
+    price: "£9.99",
+    period: "/ month",
     features: [
       "Adaptive GCSE Maths assessments",
       "Personalised question flow",
@@ -16,6 +17,9 @@ const plans = [
   },
   {
     title: "Family Bundle",
+    price: "£30.99",
+    period: "/ month",
+    subtitle: "Up to 4 kids",
     features: [
       "All Individual features included",
       "Manage multiple learners",
@@ -30,6 +34,7 @@ const plans = [
       "Teacher & class dashboards",
       "Curriculum-aligned reporting",
       "Staff onboarding & support",
+      "Free parent dashboard",
     ],
     buttonText: "Request Access",
     primary: false,
@@ -55,45 +60,68 @@ const Pricing = () => {
           </p>
         </div>
 
-        {/* Cards */}
+        {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {plans.map((plan, idx) => (
             <div
               key={idx}
-              className={`relative rounded-3xl p-8 bg-white/80 backdrop-blur border transition-all duration-300
+              className={`relative flex flex-col justify-between items-center rounded-3xl p-8 bg-white/80 backdrop-blur border transition-all duration-300
                 ${
                   plan.primary
-                    ? "border-indigo-300 shadow-lg scale-[1.02]"
+                    ? "border-indigo-300 shadow-xl scale-[1.03]"
                     : "border-gray-200 shadow-sm hover:shadow-md"
                 }
               `}
             >
-              {plan.isSchool && (
-                <div className="absolute top-4 right-4 text-xs font-medium text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
-                  Schools
-                </div>
-              )}
+              <div>
+                {plan.isSchool && (
+                  <div className="absolute top-4 right-4 text-xs font-medium text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
+                    Schools
+                  </div>
+                )}
 
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-                {plan.title}
-              </h3>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                  {plan.title}
+                </h3>
 
-              <ul className="space-y-4 mb-8 text-gray-600 text-xl">
-                {plan.features.map((feat, i) => (
-                  <li key={i} className="flex gap-3">
-                    <IoMdCheckmarkCircleOutline className="text-indigo-400 mt-1 w-5 h-5" />
-                    {feat}
-                  </li>
-                ))}
-              </ul>
+                {/* Price */}
+                {!plan.isSchool && (
+                  <div className="mb-6">
+                    <div>
+                      <div className="flex items-end gap-1">
+                        <span className="text-4xl font-semibold text-gray-900">
+                          {plan.price}
+                        </span>
+                        <span className="text-gray-500 text-base">
+                          {plan.period}
+                        </span>
+                      </div>
+                    </div>
+                    {plan.subtitle && (
+                      <p className="mt-1 text-sm text-gray-500">
+                        {plan.subtitle}
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                <ul className="space-y-4 mb-10 text-gray-600 text-lg">
+                  {plan.features.map((feat, i) => (
+                    <li key={i} className="flex gap-3">
+                      <IoMdCheckmarkCircleOutline className="text-indigo-400 mt-1 w-5 h-5" />
+                      {feat}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {/* Button */}
               <Link
                 to={plan.isSchool ? "/school-request" : "/register"}
-                className={`block text-center rounded-full px-6 py-3 font-medium transition
+                className={`block text-center rounded-full px-6 py-3 font-medium transition-all
                   ${
                     plan.primary
-                      ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                      ? "bg-indigo-600 text-white hover:bg-indigo-700 shadow-md"
                       : "border border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50"
                   }
                 `}

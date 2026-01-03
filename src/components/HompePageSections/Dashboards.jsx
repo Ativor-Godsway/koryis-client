@@ -67,8 +67,8 @@ const Dashboards = () => {
             Dashboards for Everyone
           </h2>
           <p className="mt-4 text-xl text-gray-600">
-            Simple, focused dashboards designed for students, teachers, and
-            parents — each with the insights they need.
+            Simple, focused dashboards designed for students, supported by free,
+            insight-driven dashboards for teachers and parents.
           </p>
         </div>
 
