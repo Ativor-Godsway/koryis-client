@@ -6,6 +6,7 @@ import StudentCard from "./components/StudentCard";
 import { useGetNotesQuery } from "../../redux/StudentNoteApi";
 import dyslexiaFacts from "../../data/dyslexiaFacts";
 import { useGetStudentQuery } from "../../redux/StudentApi";
+import WeeklyReport from "../student/components/WeeklyReport";
 
 export default function ParentDashboard() {
   const parentInfo = JSON.parse(localStorage.getItem("parent"));
@@ -154,6 +155,8 @@ export default function ParentDashboard() {
     );
   }
 
+  const teacherId = "none";
+
   return (
     <div className="space-y-10 pb-10">
       {/* DID YOU KNOW / FUN FACT */}
@@ -166,15 +169,18 @@ export default function ParentDashboard() {
 
       {/* STUDENT CARDS */}
       {students.map((studentCode) => (
-        <StudentCard
-          key={studentCode}
-          studentCode={studentCode}
-          getGrade={getGrade}
-          getComment={getComment}
-          getGradeColor={getGradeColor}
-          downloadPDF={downloadPDF}
-          teacherNote={teacherNote}
-        />
+        <div>
+          <WeeklyReport studentId={studentCode} teacherId={teacherId} />
+          <StudentCard
+            key={studentCode}
+            studentCode={studentCode}
+            getGrade={getGrade}
+            getComment={getComment}
+            getGradeColor={getGradeColor}
+            downloadPDF={downloadPDF}
+            teacherNote={teacherNote}
+          />
+        </div>
       ))}
     </div>
   );

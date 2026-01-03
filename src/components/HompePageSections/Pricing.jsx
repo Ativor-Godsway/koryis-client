@@ -1,6 +1,7 @@
 import React from "react";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
+import SubscribeButton from "../SubscribeButton";
 
 const plans = [
   {
@@ -99,6 +100,7 @@ const Pricing = () => {
               >
                 {plan.buttonText}
               </Link>
+              <SubscribeButton />
             </div>
           ))}
         </div>

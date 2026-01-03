@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { motivations } from "../../data/motivation";
-import { HiMiniSpeakerWave, HiMiniSpeakerXMark } from "react-icons/hi2";
+import {
+  HiMiniSpeakerWave,
+  HiMiniSpeakerXMark,
+  HiOutlineAcademicCap,
+} from "react-icons/hi2";
 import { playTTS, stopTTS } from "../../services/tts";
 import { useGetStudentQuery } from "../../redux/StudentApi";
 import { useState, useEffect } from "react";
@@ -11,6 +15,7 @@ import { useGetTasksByStudentQuery } from "../../redux/studentQuestionsApi";
 import tips from "../../data/tips";
 import { useGetNotesQuery } from "../../redux/StudentNoteApi";
 import { formatTaskDate } from "../../utils/formatDate";
+import WeeklyReport from "./components/WeeklyReport";
 
 export default function StudentDashboard() {
   const navigate = useNavigate();
@@ -139,6 +144,21 @@ export default function StudentDashboard() {
     return todayMotivations[randomIndex];
   }
 
+  //Get Friday
+
+  const [isFriday, setIsFriday] = useState(false);
+
+  useEffect(() => {
+    const checkDay = () => {
+      setIsFriday(new Date().getDay() === 5);
+    };
+
+    checkDay();
+    const interval = setInterval(checkDay, 60 * 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   // ✅ Update states when student data is loaded
   useEffect(() => {
     if (student) {
@@ -179,36 +199,66 @@ export default function StudentDashboard() {
       id="dashboard-container"
       className="min-h-[89vh] bg-white p-3 md:p-4 flex flex-col space-y-8"
     >
-      {/* Welcome and Motivation */}
-      <div className="bg-teal-50 border border-teal-100 p-8 rounded-3xl shadow-md text-center space-y-4">
-        <h1 className="text-3xl font-bold text-[#2B3A67]">
-          Welcome {!title || "Back"}, {name} 👋
-        </h1>
-        <p className="text-2xl text-[#333333] font-medium leading-relaxed max-w-2xl mx-auto">
-          {motivationText}
-        </p>
-        {teacherId ? (
-          <button
-            onClick={() => {
-              stopTTS(setIsSpeaking); // Stop any TTS
-              navigate("/student/tasks"); // Navigate to tasks
-            }}
-            className="mt-4 bg-blue-600 text-white hover:bg-blue-700 transition-all text-xl font-semibold py-3 px-8 rounded-2xl shadow-lg"
-          >
-            Start Today’s Task
-          </button>
-        ) : (
-          <button
-            onClick={() => {
-              stopTTS(setIsSpeaking); // Stop any TTS
-              navigate("/student/student-questions"); // Navigate to tasks
-            }}
-            className="mt-4 bg-blue-600 text-white hover:bg-blue-700 transition-all text-xl font-semibold py-3 px-8 rounded-2xl shadow-lg"
-          >
-            Start Today’s Task
-          </button>
-        )}
+      {/* Speak to IC */}
+      <div className="flex w-full justify-end">
+        <button
+          className="
+    flex items-center gap-3
+    bg-[#E8F1FA]
+    hover:bg-[#DCEAF7]
+    border border-blue-300
+    text-[#2B3A67]
+    font-semibold
+    px-6 py-3
+    rounded-2xl
+    shadow-sm hover:shadow-md
+    transition-all duration-300
+  "
+        >
+          <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+            <HiOutlineAcademicCap className="text-xl" />
+          </div>
+
+          <div className="flex flex-col text-left leading-tight">
+            <span className="text-sm font-medium">Speak to IC</span>
+            <span className="text-xs text-gray-600">
+              Ask questions • Get help
+            </span>
+          </div>
+        </button>
       </div>
+
+      {isFriday ? (
+        <WeeklyReport studentId={studentId} teacherId={teacherId} />
+      ) : (
+        <div className="bg-teal-50 border border-teal-100 p-8 rounded-3xl shadow-md text-center space-y-4">
+          <h1 className="text-3xl font-bold text-[#2B3A67]">
+            Welcome {!title || "Back"}, {name} 👋
+          </h1>
+          <p className="text-2xl text-[#333333] font-medium leading-relaxed max-w-2xl mx-auto">
+            {motivationText}
+          </p>
+          {teacherId ? (
+            <button
+              onClick={() => {
+                navigate("/student/tasks"); // Navigate to tasks
+              }}
+              className="mt-4 bg-blue-600 text-white hover:bg-blue-700 transition-all text-xl font-semibold py-3 px-8 rounded-2xl shadow-lg"
+            >
+              Start Today’s Task
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                navigate("/student/student-questions"); // Navigate to tasks
+              }}
+              className="mt-4 bg-blue-600 text-white hover:bg-blue-700 transition-all text-xl font-semibold py-3 px-8 rounded-2xl shadow-lg"
+            >
+              Start Today’s Task
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Previous Task & Daily Tip */}
       <div className="flex flex-col md:flex-row w-full justify-between gap-7">
@@ -309,30 +359,6 @@ export default function StudentDashboard() {
             </div>
           </div>
         )}
-
-        {/* Text to Speech */}
-        <div className="w-full flex justify-end items-center p-4 md:p-8 self-end gap-4">
-          {!isSpeaking ? (
-            <button
-              onClick={readDashboard}
-              className="bg-purple-200 hover:bg-purple-300 text-purple-900 font-semibold py-3 px-6 rounded-full shadow-md flex items-center gap-2 transition-all"
-              disabled={isSpeaking}
-            >
-              <HiMiniSpeakerWave className="text-3xl" />
-              Speak to IC
-            </button>
-          ) : (
-            <button
-              onClick={() => {
-                stopTTS(setIsSpeaking);
-              }}
-              className="bg-red-200 hover:bg-red-300 text-red-900 font-semibold py-3 px-6 rounded-full shadow-md flex items-center gap-2 transition-all"
-            >
-              <HiMiniSpeakerXMark className="text-3xl" />
-              Stop Reading
-            </button>
-          )}
-        </div>
       </div>
     </div>
   );

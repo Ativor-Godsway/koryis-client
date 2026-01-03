@@ -35,13 +35,16 @@ const Login = () => {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center px-4
+      className=" min-h-screen flex items-center justify-center px-4
                 bg-gradient-to-br from-purple-100 via-indigo-100 to-purple-200"
     >
       <div
-        className="w-full md:w-[480px] bg-white rounded-3xl p-8
+        className="relative w-full md:w-[480px] bg-white rounded-3xl p-8
                   shadow-[0_20px_60px_rgba(99,102,241,0.15)]"
       >
+        <Link to={"/"} className="w-full flex items-center justify-center">
+          <img src="/favicon-koryis.png" alt="Koryis Logo" className="w-16 " />
+        </Link>
         <h2 className="text-3xl font-semibold text-center mb-2 text-gray-900">
           Welcome Back
         </h2>

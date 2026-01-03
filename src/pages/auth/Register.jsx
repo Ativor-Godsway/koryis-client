@@ -5,7 +5,7 @@ import ChildStep from "../../components/registrationSteps/StudentStep.jsx";
 import ReviewStep from "../../components/registrationSteps/ReviewStep.jsx";
 import { registerParent } from "../../services/auth.js";
 import { login } from "../../services/auth.js";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 const steps = ["Parent Info", "Child Info", "Review & Submit"];
@@ -185,9 +185,16 @@ export default function WizardForm() {
         <form
           onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
           className="relative z-10 w-full max-w-4xl mx-auto
-      p-6 md:p-10 bg-white/80 backdrop-blur-xl
+      p-6 md:p-10 bg-white backdrop-blur-xl
       rounded-3xl shadow-2xl border border-white"
         >
+          <Link to={"/"} className="w-full flex items-center justify-center">
+            <img
+              src="/favicon-koryis.png"
+              alt="Koryis Logo"
+              className="w-16 "
+            />
+          </Link>
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-gray-800">
             {steps[currentStep]}
           </h2>

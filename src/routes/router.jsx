@@ -41,6 +41,8 @@ import Requests from "../pages/admin/Requests";
 import AdminRoute from "./AdminRoute";
 import CreateNewTeacher from "../pages/admin/components/CreateNewTeacher";
 import SchoolRegistration from "../pages/admin/SchoolRegistration";
+import BillingSuccess from "../components/BillingSuccess";
+import BillingCancel from "../components/BillingCancel";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +53,8 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/school-request", element: <InstitutionalLicensingForm /> },
+      { path: "/billing/success", element: <BillingSuccess /> },
+      { path: "/billing/cancel", element: <BillingCancel /> },
 
       //Student Routes
       {
