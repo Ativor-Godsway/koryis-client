@@ -1,5 +1,6 @@
 // BillingCancel.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BillingCancel = () => {
   return (
@@ -13,12 +14,12 @@ const BillingCancel = () => {
           Your subscription was not completed. Please try again if you want to
           subscribe.
         </p>
-        <button
-          onClick={() => window.location.reload()}
+        <Link
+          to={"/student/dashboard"}
           className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-2 rounded-lg transition"
         >
-          Retry Payment
-        </button>
+          Go Back Home
+        </Link>
       </div>
     </div>
   );

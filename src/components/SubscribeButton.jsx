@@ -39,15 +39,31 @@ const SubscribeButton = () => {
   };
 
   return (
-    <button
-      onClick={handleCheckout}
-      disabled={loading}
-      className={`bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg transition ${
-        loading ? "opacity-60 cursor-not-allowed" : ""
-      }`}
-    >
-      {loading ? "Redirecting to Payment..." : "Subscribe Now"}
-    </button>
+    <div className="w-full flex items-center justify-center pt-3">
+      <button
+        onClick={handleCheckout}
+        disabled={loading}
+        className={`
+    relative inline-flex items-center justify-center
+    rounded-full px-7 py-1
+    text-[15px] font-medium tracking-tight
+    bg-black text-white
+    shadow-[0_4px_12px_rgba(0,113,227,0.35)]
+    transition-all duration-200 ease-out
+    hover:bg-[#313131] hover:shadow-[0_6px_18px_rgba(0,113,227,0.45)]
+    active:scale-[0.97]
+    disabled:opacity-60 disabled:cursor-not-allowed
+  `}
+      >
+        {loading && (
+          <span className="absolute left-4 h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+        )}
+
+        <span className={`${loading ? "ml-3" : ""}`}>
+          {loading ? "Redirecting…" : "Subscribe Now"}
+        </span>
+      </button>
+    </div>
   );
 };
 
