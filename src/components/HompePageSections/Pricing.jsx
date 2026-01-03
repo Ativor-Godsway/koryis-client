@@ -100,7 +100,6 @@ const Pricing = () => {
               >
                 {plan.buttonText}
               </Link>
-              <SubscribeButton />
             </div>
           ))}
         </div>
