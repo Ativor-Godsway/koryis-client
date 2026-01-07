@@ -11,6 +11,7 @@ const plans = [
       "Adaptive GCSE Maths assessments",
       "Personalised question flow",
       "Designed for independent learners",
+      "Free parent dashboard",
     ],
     buttonText: "Get Started",
     primary: false,
