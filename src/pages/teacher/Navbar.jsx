@@ -8,7 +8,7 @@ import ChangePasswordModal from "../../modals/ChangePassword";
 import EditProfileModal from "../../modals/EditProfileModal";
 import { changePassword, logout } from "../../services/auth";
 import { formatTaskDate } from "../../utils/formatDate";
-import { LogOut, KeyRound } from "lucide-react";
+import { LogOut, KeyRound, MessageSquare } from "lucide-react";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -164,6 +164,14 @@ export default function Navbar() {
                   <KeyRound size={16} />
                   Change Password
                 </button>
+
+                <Link
+                  to={"/feedback"}
+                  className="w-full flex  items-center gap-3 px-4 py-2 rounded-xl hover:bg-gray-100"
+                >
+                  <MessageSquare size={16} />
+                  Feedback
+                </Link>
 
                 <button
                   onClick={handleLogout}

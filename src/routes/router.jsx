@@ -43,6 +43,8 @@ import CreateNewTeacher from "../pages/admin/components/CreateNewTeacher";
 import SchoolRegistration from "../pages/admin/SchoolRegistration";
 import BillingSuccess from "../components/BillingSuccess";
 import BillingCancel from "../components/BillingCancel";
+import FeedbackForm from "../components/FeedbackForm";
+import Feedbacks from "../pages/admin/Feedbacks";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/school-request", element: <InstitutionalLicensingForm /> },
+      { path: "/feedback", element: <FeedbackForm /> },
       { path: "/billing/success", element: <BillingSuccess /> },
       { path: "/billing/cancel", element: <BillingCancel /> },
 
@@ -119,6 +122,7 @@ const router = createBrowserRouter([
           { path: "dashboard", element: <AdminDashboard /> },
           { path: "users", element: <Users /> },
           { path: "requests", element: <Requests /> },
+          { path: "feedbacks", element: <Feedbacks /> },
           { path: "settings", element: <Settings /> },
           { path: "diagram-questions", element: <QuestionForm /> },
           { path: "create-teacher", element: <CreateNewTeacher /> },

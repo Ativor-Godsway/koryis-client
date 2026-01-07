@@ -9,6 +9,7 @@ import EditProfileModal from "../../modals/EditProfileModal";
 import { changePassword, logout } from "../../services/auth";
 import { useUpdateStudentMutation } from "../../redux/StudentApi";
 import { LogOut, KeyRound, UserPen } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 import SubscribeButton from "../../components/SubscribeButton";
 
 const YEAR_GROUPS = [
@@ -280,7 +281,13 @@ export default function Navbar() {
                   <KeyRound size={16} />
                   Change Password
                 </button>
-
+                <Link
+                  to={"/feedback"}
+                  className="w-full flex  items-center gap-3 px-4 py-2 rounded-xl hover:bg-gray-100"
+                >
+                  <MessageSquare size={16} />
+                  Feedback
+                </Link>
                 <button
                   onClick={handleLogout}
                   className="w-full flex items-center gap-3 px-4 py-2 rounded-xl text-red-500 hover:bg-red-50"

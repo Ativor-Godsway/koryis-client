@@ -9,6 +9,7 @@ import { parentApi } from "./ParentApi";
 import { teacherApi } from "./TeacherApi";
 import { schoolApi } from "./SchoolApi";
 import { reportApi } from "./WeeklyReport";
+import { feedbackApi } from "./FeedbackApi";
 
 export const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ export const store = configureStore({
     [teacherApi.reducerPath]: teacherApi.reducer,
     [schoolApi.reducerPath]: schoolApi.reducer,
     [reportApi.reducerPath]: reportApi.reducer,
+    [feedbackApi.reducerPath]: feedbackApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -34,5 +36,6 @@ export const store = configureStore({
       .concat(parentApi.middleware)
       .concat(teacherApi.middleware)
       .concat(schoolApi.middleware)
-      .concat(reportApi.middleware),
+      .concat(reportApi.middleware)
+      .concat(feedbackApi.middleware),
 });

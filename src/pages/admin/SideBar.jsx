@@ -10,6 +10,7 @@ import {
   School,
   X,
   Menu,
+  MessageCircle,
 } from "lucide-react";
 import { useState } from "react";
 import ChangePasswordModal from "../../modals/ChangePassword";
@@ -38,6 +39,7 @@ export default function Sidebar() {
       label: "Register School",
       icon: School,
     },
+    { to: "/admin/feedbacks", label: "Feedbacks", icon: MessageCircle },
   ];
 
   const handleLogout = async () => {
