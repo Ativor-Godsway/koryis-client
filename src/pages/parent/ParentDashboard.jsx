@@ -7,6 +7,8 @@ import { useGetNotesQuery } from "../../redux/StudentNoteApi";
 import dyslexiaFacts from "../../data/dyslexiaFacts";
 import { useGetStudentQuery } from "../../redux/StudentApi";
 import WeeklyReport from "../student/components/WeeklyReport";
+import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
 export default function ParentDashboard() {
   const parentInfo = JSON.parse(localStorage.getItem("parent"));
@@ -159,6 +161,34 @@ export default function ParentDashboard() {
 
   return (
     <div className="space-y-10 pb-10">
+      {/* Feedback Button */}
+      <Link
+        to="/feedback"
+        className="
+        w-[400px]
+         flex items-center gap-3
+      bg-[#E8F1FA]
+      hover:bg-[#DCEAF7]
+      border border-blue-300
+      text-[#2B3A67]
+      font-semibold
+      px-6 py-3
+      rounded-2xl
+      shadow-sm hover:shadow-md
+      transition-all duration-300
+            "
+      >
+        <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+          <HiOutlineChatBubbleLeftRight className="text-xl" />
+        </div>
+
+        <div className="flex flex-col text-left leading-tight">
+          <span className="text-sm font-medium">Give Feedback</span>
+          <span className="text-xs text-gray-600">
+            Share your thoughts • Help us improve
+          </span>
+        </div>
+      </Link>
       {/* DID YOU KNOW / FUN FACT */}
       <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-xl shadow-sm">
         <h3 className="text-lg font-semibold text-blue-700 mb-1">

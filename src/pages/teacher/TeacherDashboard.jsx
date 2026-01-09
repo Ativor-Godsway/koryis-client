@@ -3,6 +3,8 @@ import { useState, useMemo } from "react";
 import { StudentRow } from "./components/StudentRow";
 import { FullPerformanceModal } from "./components/FullPerformanceModal";
 import { SendNoteModal } from "./components/SendNoteModal";
+import { Link } from "react-router-dom";
+import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
 
 /**
  * TeacherDashboard
@@ -135,7 +137,34 @@ export default function TeacherDashboard() {
           onClose={closeSendNoteModal}
         />
       )}
+      {/* Feedback Button */}
+      <Link
+        to="/feedback"
+        className="
+           flex items-center gap-3
+           w-[400px] mb-5
+      bg-[#E8F1FA]
+      hover:bg-[#DCEAF7]
+      border border-blue-300
+      text-[#2B3A67]
+      font-semibold
+      px-6 py-3
+      rounded-2xl
+      shadow-sm hover:shadow-md
+      transition-all duration-300
+            "
+      >
+        <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+          <HiOutlineChatBubbleLeftRight className="text-xl" />
+        </div>
 
+        <div className="flex flex-col text-left leading-tight">
+          <span className="text-sm font-medium">Give Feedback</span>
+          <span className="text-xs text-gray-600">
+            Share your thoughts • Help us improve
+          </span>
+        </div>
+      </Link>
       <main className="w-full mx-auto">
         <div className="bg-white rounded-xl shadow p-6">
           <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between">

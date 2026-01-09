@@ -17,6 +17,9 @@ import { useGetNotesQuery } from "../../redux/StudentNoteApi";
 import { formatTaskDate } from "../../utils/formatDate";
 import WeeklyReport from "./components/WeeklyReport";
 
+import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2"; // feedback icon
+import { Link } from "react-router-dom";
+
 export default function StudentDashboard() {
   const navigate = useNavigate();
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -199,21 +202,49 @@ export default function StudentDashboard() {
       id="dashboard-container"
       className="min-h-[89vh] bg-white p-3 md:p-4 flex flex-col space-y-8"
     >
-      {/* Speak to IC */}
-      <div className="flex w-full justify-end">
+      <div className="flex w-full justify-end gap-4">
+        {/* Feedback Button */}
+        <Link
+          to="/feedback"
+          className="
+      flex items-center gap-3
+      bg-[#E6F8F0]
+      hover:bg-[#CCF0E0]
+      border border-green-300
+      text-[#1F4D37]
+      font-semibold
+      px-6 py-3
+      rounded-2xl
+      shadow-sm hover:shadow-md
+      transition-all duration-300
+    "
+        >
+          <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white">
+            <HiOutlineChatBubbleLeftRight className="text-xl" />
+          </div>
+
+          <div className="flex flex-col text-left leading-tight">
+            <span className="text-sm font-medium">Give Feedback</span>
+            <span className="text-xs text-gray-600">
+              Share your thoughts • Help us improve
+            </span>
+          </div>
+        </Link>
+
+        {/* Speak to IC */}
         <button
           className="
-    flex items-center gap-3
-    bg-[#E8F1FA]
-    hover:bg-[#DCEAF7]
-    border border-blue-300
-    text-[#2B3A67]
-    font-semibold
-    px-6 py-3
-    rounded-2xl
-    shadow-sm hover:shadow-md
-    transition-all duration-300
-  "
+      flex items-center gap-3
+      bg-[#E8F1FA]
+      hover:bg-[#DCEAF7]
+      border border-blue-300
+      text-[#2B3A67]
+      font-semibold
+      px-6 py-3
+      rounded-2xl
+      shadow-sm hover:shadow-md
+      transition-all duration-300
+    "
         >
           <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
             <HiOutlineAcademicCap className="text-xl" />
