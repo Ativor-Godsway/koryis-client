@@ -10,6 +10,14 @@ import { CompletedScreen } from "./components/CompletedScreen";
 import { IntroScreen } from "./components/IntroScreen";
 import { shuffleArray } from "../../utils/shuffel";
 import StartTaskScreen from "./components/StartTaskScreen";
+import {
+  algebraQuestions,
+  geometryQuestions,
+  numbersQuestion,
+  probabilityQuestions,
+  ratioQuestions,
+  statisticsQuestions,
+} from "../../data/questions";
 
 export default function StudentQuestionsPage() {
   const [generateQuestions, { data, isLoading, error }] =
@@ -45,12 +53,25 @@ export default function StudentQuestionsPage() {
   const yearGroup = studentInfo?.yearGroup;
   const grade = "6";
 
-  const questionsData = data?.data || {};
+  //Uncomment after testing
+  // const questionsData = data?.data || {};
+
+  //Delete after testing
+  const QUESTIONS_MAP = {
+    Algebra: algebraQuestions,
+    Geometry: geometryQuestions,
+    Number: numbersQuestion,
+    Ratio: ratioQuestions,
+    Probability: probabilityQuestions,
+    Statistics: statisticsQuestions,
+  };
+
+  const questionsData = QUESTIONS_MAP[topic] || {};
 
   // ✅ SHUFFLED QUESTIONS
   const questions = useMemo(
     () => shuffleArray(plainQuestions),
-    [plainQuestions, shuffleKey]
+    [plainQuestions, shuffleKey],
   );
 
   const progressPercent =
@@ -60,29 +81,43 @@ export default function StudentQuestionsPage() {
 
   // ✅ LOAD QUESTIONS (BUTTON)
   const handleStart = async (selectedTopic) => {
+    const data = QUESTIONS_MAP[selectedTopic] || {};
+
     setTopic(selectedTopic);
+    setPlainQuestions(data.questions || []);
+    setShuffleKey((prev) => prev + 1);
 
-    try {
-      const result = await generateQuestions({
-        topic: selectedTopic, // ✅ use selected topic
-        yearGroup,
-        grade,
-        studentId,
-      }).unwrap();
+    setCurrent(0);
+    setScore(0);
+    setCompleted(false);
+    setAttempts(0);
+    setFillInAnswer("");
+    setShowIntro(true);
+    setHasSubmitted(false);
 
-      setPlainQuestions(result.data.questions || []);
-      setShuffleKey((prev) => prev + 1);
+    // try {
+    //   //UNCOMMENT AFTER TESTING
+    //   const result = await generateQuestions({
+    //     topic: selectedTopic, // ✅ use selected topic
+    //     yearGroup,
+    //     grade,
+    //     studentId,
+    //   }).unwrap();
 
-      setCurrent(0);
-      setScore(0);
-      setCompleted(false);
-      setAttempts(0);
-      setFillInAnswer("");
-      setShowIntro(true);
-      setHasSubmitted(false);
-    } catch (err) {
-      console.error("Failed to fetch questions:", err);
-    }
+    //   setPlainQuestions(result.data.questions || []);
+
+    //   setShuffleKey((prev) => prev + 1);
+
+    //   setCurrent(0);
+    //   setScore(0);
+    //   setCompleted(false);
+    //   setAttempts(0);
+    //   setFillInAnswer("");
+    //   setShowIntro(true);
+    //   setHasSubmitted(false);
+    // } catch (err) {
+    //   console.error("Failed to fetch questions:", err);
+    // }
   };
 
   // ✅ SET ATTEMPTS BASED ON QUESTION TYPE
@@ -132,10 +167,15 @@ export default function StudentQuestionsPage() {
 
     if (newAttempts >= maxAttempts) {
       setModalText(
-        questions[current].explanation || "No explanation available."
+        questions[current].explanation || "No explanation available.",
       );
       setShowModal(true);
     }
+  };
+
+  //Just for testing as the ID
+  const generateId = () => {
+    return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
   };
 
   // ✅ SUBMIT GRADE (SAFE – NO LOOP)
@@ -151,7 +191,8 @@ export default function StudentQuestionsPage() {
 
       submitGrade({
         student: studentId,
-        task: questionsData._id,
+        // task: questionsData._id,
+        task: generateId(),
         topic: questionsData.topic.toLowerCase(),
         subTopic: questionsData.subTopic,
         score: Math.round((score / questions.length) * 100),
@@ -200,7 +241,7 @@ export default function StudentQuestionsPage() {
 
     playTTS(
       `Welcome. Today's topic is ${topic}. ${intro}. Objectives: ${objectives}. Click proceed to start.`,
-      () => {}
+      () => {},
     );
   };
 
@@ -209,7 +250,7 @@ export default function StudentQuestionsPage() {
 
     playTTS(
       `Explanation: ${explanation}. Correct answer is ${questions[current]?.answer}. Click next to proceed.`,
-      () => {}
+      () => {},
     );
   };
 

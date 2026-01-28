@@ -309,7 +309,8 @@ export default function Grades() {
                           let color = "#9ca3af"; // grey for empty bars
 
                           if (!entry.isEmpty) {
-                            if (entry.score >= 80) color = "#16a34a"; // green
+                            if (entry.score >= 80)
+                              color = "#16a34a"; // green
                             else if (entry.score >= 60)
                               color = "#3b82f6"; // blue
                             else if (entry.score >= 40)

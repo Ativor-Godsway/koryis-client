@@ -9,7 +9,6 @@ import { playTTS, stopTTS } from "../../services/tts";
 import { useGetStudentQuery } from "../../redux/StudentApi";
 import { useState, useEffect } from "react";
 import { useGetTasksByTeacherQuery } from "../../redux/TaskApi";
-import codedQuestions from "../../data/questions";
 import { useGetGradePerTaskQuery } from "../../redux/GradeApi";
 import { useGetTasksByStudentQuery } from "../../redux/studentQuestionsApi";
 import tips from "../../data/tips";
@@ -27,15 +26,15 @@ export default function StudentDashboard() {
   // ✅ Dynamic states
   const [name, setName] = useState("Student");
   const [motivationText, setMotivationText] = useState(
-    "Your brain learns best in little steps! Keep going!"
+    "Your brain learns best in little steps! Keep going!",
   );
 
   const [dailyTip, setDailyTip] = useState(
-    "Break your study time into small parts and take short breaks. Little steps lead to big progress!"
+    "Break your study time into small parts and take short breaks. Little steps lead to big progress!",
   );
 
   const [systemMessage, setSystemMessage] = useState(
-    "You are doing great,keep it up. Continue to take more tests to improve your skill"
+    "You are doing great,keep it up. Continue to take more tests to improve your skill",
   );
 
   const studentInfo = JSON.parse(localStorage.getItem("student"));
@@ -66,7 +65,7 @@ export default function StudentDashboard() {
   //Get Previous Grade
   const { data: gradeInfo } = useGetGradePerTaskQuery(
     { studentId, taskId },
-    { skip: !taskId }
+    { skip: !taskId },
   );
 
   const score = gradeInfo?.data?.[0]?.score || 0;

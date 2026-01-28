@@ -22,8 +22,10 @@ const Feedbacks = () => {
   const { data: feedbacks = [], isLoading, error } = useGetFeedbacksQuery();
   const [deleteFeedback] = useDeleteFeedbackMutation();
 
+  console.log("Feedbacks:", feedbacks);
+
   const countBoolean = (key) => {
-    const yes = feedbacks.filter((f) => f[key]).length;
+    const yes = feedbacks.filter((f) => f[key] === "Yes").length;
     const no = feedbacks.length - yes;
     return [
       { name: "Yes", value: yes },
@@ -53,32 +55,29 @@ const Feedbacks = () => {
 
         {/* ===== CHARTS ===== */}
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Supportive */}
-          <ChartCard title="Did IC feel supportive and clear during the Maths questions?">
-            <PieData data={countBoolean("supportiveAndClear")} />
-          </ChartCard>
-
-          {/* Voice */}
-          <ChartCard
-            title="Did the voice interaction help your child stay focused?
-"
-          >
-            <PieData data={countBoolean("voiceHelpedFocus")} />
-          </ChartCard>
-
-          {/* Confidence */}
-          <ChartCard title=" ⁠Did IC help identify learning gaps or build confidence?">
-            <PieData data={countBoolean("confidenceOrGaps")} />
+          {/* Design Rating */}
+          <ChartCard title="Design Rating">
+            <PieData data={countByValue("designRating")} />
           </ChartCard>
 
           {/* Ease of Use */}
           <ChartCard title="Ease of Use">
-            <BarData data={countByValue("easeOfUse")} />
+            <PieData data={countByValue("easeOfUse")} />
           </ChartCard>
 
           {/* Pricing */}
-          <ChartCard title="Pricing Preference">
-            <BarData data={countByValue("pricingRange")} />
+          <ChartCard title="Pricing Feedback">
+            <PieData data={countByValue("pricingFeedback")} />
+          </ChartCard>
+
+          {/* Comparison Rating */}
+          <ChartCard title="Comparison Rating">
+            <PieData data={countByValue("comparisonRating")} />
+          </ChartCard>
+
+          {/* Onboarding Clarity */}
+          <ChartCard title="Onboarding Clarity">
+            <PieData data={countByValue("onboardingClarity")} />
           </ChartCard>
         </div>
 
@@ -89,31 +88,24 @@ const Feedbacks = () => {
               key={f._id}
               className="rounded-xl bg-white p-6 shadow-sm space-y-3"
             >
-              {f.easeOfUse === "Difficult" && (
+              {f.uiImprovements && (
                 <p className="text-sm text-red-600">
-                  Difficulty: {f.easeOfUseReason}
+                  UI Improvements: {f.uiImprovements}
                 </p>
               )}
-              {f.supportiveReason && (
+              {f.finalSuggestions && (
                 <p className="text-sm text-red-600">
-                  Supportive reason: {f.supportiveReason}
+                  Final Suggestions: {f.finalSuggestions}
                 </p>
               )}
-              {f.voiceReason && (
+              {f.usesOtherPlatform && (
                 <p className="text-sm text-red-600">
-                  Voice reason: {f.voiceReason}
+                  Uses Other Platform: {f.usesOtherPlatform}
                 </p>
               )}
-
-              {f.confidenceReason && (
+              {f.feltStuck && (
                 <p className="text-sm text-red-600">
-                  Confidence reason: {f.confidenceReason}
-                </p>
-              )}
-
-              {f.improvementSuggestion && (
-                <p className="text-sm">
-                  <strong>Improvement:</strong> {f.improvementSuggestion}
+                  Felt Stuck: {f.feltStuck}
                 </p>
               )}
 
@@ -122,9 +114,10 @@ const Feedbacks = () => {
                   <strong>Continue Using:</strong> {f.continueUsing}
                 </p>
               )}
+
               {f.overallExperience && (
                 <p className="text-sm">
-                  <strong>Overall:</strong> {f.overallExperience}
+                  <strong>Overall Experience:</strong> {f.overallExperience}
                 </p>
               )}
 

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { HiMiniSpeakerXMark, HiMiniSpeakerWave } from "react-icons/hi2";
 import { playTTS, stopTTS } from "../../services/tts";
 import { useGetTasksByTeacherQuery } from "../../redux/TaskApi";
-import codedQuestions from "../../data/questions";
+import { algebraQuestions } from "../../data/questions";
 import { useSubmitGradeMutation } from "../../redux/GradeApi";
 import { shuffleArray } from "../../utils/shuffel";
 import confetti from "canvas-confetti";
@@ -36,13 +36,13 @@ export default function Tasks() {
 
   const questionsData = teacherId
     ? data?.tasks?.[0] || null
-    : codedQuestions || null;
+    : algebraQuestions || null;
 
   const plainQuestions = questionsData?.questions || [];
 
   const questions = useMemo(
     () => shuffleArray(plainQuestions),
-    [plainQuestions, shuffleKey]
+    [plainQuestions, shuffleKey],
   );
 
   const currentQuestion = questions[current];
@@ -122,7 +122,7 @@ export default function Tasks() {
 
     if (newAttempts >= maxAttempts) {
       setModalText(
-        questions[current].explanation || "No explanation available."
+        questions[current].explanation || "No explanation available.",
       );
       setShowModal(true);
     }
@@ -164,7 +164,7 @@ export default function Tasks() {
 
     playTTS(
       `Welcome. Today's topic is ${topic}. ${intro}. Objectives: ${objectives}. Press proceed to start.`,
-      setIsSpeaking
+      setIsSpeaking,
     );
   };
 

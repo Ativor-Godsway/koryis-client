@@ -19,7 +19,7 @@ const HomePage = () => {
       <WhyIC />
       <HowItWorks />
       <Dashboards />
-      <Pricing />
+      {/* <Pricing /> */}
       <Faqs />
       <Topics />
       <Footer />
