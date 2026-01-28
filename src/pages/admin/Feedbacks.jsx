@@ -100,12 +100,13 @@ const Feedbacks = () => {
               )}
               {f.usesOtherPlatform && (
                 <p className="text-sm text-red-600">
-                  Uses Other Platform: {f.usesOtherPlatform}
+                  Uses Other Platform: {f.usesOtherPlatform} ,{" "}
+                  {f.otherPlatformName}
                 </p>
               )}
               {f.feltStuck && (
                 <p className="text-sm text-red-600">
-                  Felt Stuck: {f.feltStuck}
+                  Felt Stuck: {f.feltStuck} , {f.stuckReason}
                 </p>
               )}
 
