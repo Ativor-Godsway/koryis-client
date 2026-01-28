@@ -27,7 +27,7 @@ const Navbar = () => {
                 { label: "Why IC", href: "#why-ic" },
                 { label: "How it works", href: "#how-it-works" },
                 { label: "Dashboards", href: "#dashboards" },
-                { label: "Pricing", href: "#pricing" },
+                // { label: "Pricing", href: "#pricing" },
               ].map((item) => (
                 <li key={item.label}>
                   <a
