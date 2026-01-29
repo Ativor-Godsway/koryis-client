@@ -178,17 +178,10 @@ export default function FeedbackForm() {
                 />
               </Question>
 
-              <Question title="13. What monthly price feels reasonable to you(£)?">
-                <RadioGroup
-                  name="pricingFeedback"
-                  options={[
-                    " £9.99 - £14.99 ",
-                    "£14.99 - 19.99 ",
-                    "£19.99 - £24.99",
-                    "Above",
-                  ]}
-                  register={register}
-                  error={errors.pricingFeedback}
+              <Question title="13. What monthly price feels reasonable (£)?">
+                <Textarea
+                  placeholder="e.g. £10–£15 per month"
+                  {...register("pricingFeedback")}
                 />
               </Question>
             </Section>
