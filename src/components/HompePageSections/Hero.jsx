@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { useRef } from "react";
+import VariableProximity from "./VariableProximity";
+
 const Hero = () => {
+  const containerRef = useRef(null);
   return (
     <section
       id="home"
@@ -20,6 +24,18 @@ const Hero = () => {
           <h1 className="text-4xl md:text-6xl font-semibold leading-tight tracking-tight text-gray-900">
             AI-driven learning for dyslexic students.
           </h1>
+
+          <div ref={containerRef} style={{ position: "relative" }}>
+            <VariableProximity
+              label={"Hover me! And then star React Bits on GitHub, or else..."}
+              className={"variable-proximity-demo"}
+              fromFontVariationSettings="'wght' 400, 'opsz' 9"
+              toFontVariationSettings="'wght' 1000, 'opsz' 40"
+              containerRef={containerRef}
+              radius={100}
+              falloff="linear"
+            />
+          </div>
 
           <p className="text-lg md:text-2xl text-gray-600 max-w-xl">
             IC (Intelligent Companion) is an adaptive assessment platform built

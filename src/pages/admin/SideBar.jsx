@@ -11,6 +11,7 @@ import {
   X,
   Menu,
   MessageCircle,
+  ClipboardCheck,
 } from "lucide-react";
 import { useState } from "react";
 import ChangePasswordModal from "../../modals/ChangePassword";
@@ -40,6 +41,7 @@ export default function Sidebar() {
       icon: School,
     },
     { to: "/admin/feedbacks", label: "Feedbacks", icon: MessageCircle },
+    { to: "/admin/tasks", label: "Assign Task", icon: ClipboardCheck },
   ];
 
   const handleLogout = async () => {

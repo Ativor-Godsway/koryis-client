@@ -45,7 +45,6 @@ const Topics = () => {
 
         {/* Context text */}
         <p className="mt-4 text-xl text-black max-w-3xl mx-auto">IC covers :</p>
-
         {/* TOPICS */}
         <div className="mt-3 flex flex-wrap justify-center gap-4">
           {topics.map((topic, idx) => (
@@ -57,7 +56,6 @@ const Topics = () => {
             </div>
           ))}
         </div>
-
         {/* STATS */}
         <div className="mt-16 flex flex-wrap gap-8 justify-center">
           {stats.map((item, idx) => {

@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { createTask, generateQuestions } from "../../services/task";
 
-export default function AssignTaskForm() {
+export default function AddTask() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [lessonInfo, setLessonInfo] = useState({
     topic: "",
     subTopic: "",
-    introduction: "",
     difficulty: "",
+    yearGroup: "",
+    introduction: "",
     objectives: [],
     summary: [],
   });
@@ -117,7 +118,7 @@ export default function AssignTaskForm() {
         },
         {
           value:
-            " Describing distributions (mean, median, mode, range, quartiles, IQR)",
+            "Describing distributions (mean, median, mode, range, quartiles, IQR)",
           label:
             "Describing distributions (mean, median, mode, range, quartiles, IQR)",
         },
@@ -130,9 +131,7 @@ export default function AssignTaskForm() {
     },
   ];
 
-  //Get teacher ID from local storage
-  const teacher = JSON.parse(localStorage.getItem("teacher"));
-  const teacherId = teacher?.code;
+  const teacherId = "00000";
 
   // Backend-generated questions will be stored here
   const [generatedQuestions, setGeneratedQuestions] = useState([]);
@@ -185,7 +184,8 @@ export default function AssignTaskForm() {
         introduction: res.introduction,
         objectives: res.objectives || [],
         summary: res.summary || [],
-        difficulty: res.difficulty || "easy",
+        difficulty: res.difficulty,
+        yearGroup: res.yearGroup,
       });
 
       // open modal
@@ -212,6 +212,7 @@ export default function AssignTaskForm() {
         topic: lessonInfo.topic,
         subTopic: lessonInfo.subTopic,
         difficulty: lessonInfo.difficulty,
+        yearGroup: lessonInfo.yearGroup,
         introduction: lessonInfo.introduction,
         objectives: lessonInfo.objectives,
         summary: lessonInfo.summary,
@@ -310,12 +311,6 @@ export default function AssignTaskForm() {
           >
             <option value="">Select year group</option>
             {[
-              "Year 1",
-              "Year 2",
-              "Year 3",
-              "Year 4",
-              "Year 5",
-              "Year 6",
               "Year 7",
               "Year 8",
               "Year 9",

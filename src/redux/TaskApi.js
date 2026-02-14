@@ -15,7 +15,16 @@ export const taskApi = createApi({
     getTaskById: builder.query({
       query: (taskId) => `/task/task/${taskId}`,
     }),
+
+    // ✅ New endpoint to get all tasks
+    getAllTasks: builder.query({
+      query: () => `/task`,
+    }),
   }),
 });
 
-export const { useGetTasksByTeacherQuery, useGetTaskByIdQuery } = taskApi;
+export const {
+  useGetTasksByTeacherQuery,
+  useGetTaskByIdQuery,
+  useGetAllTasksQuery,
+} = taskApi;

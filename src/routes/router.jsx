@@ -45,6 +45,8 @@ import BillingSuccess from "../components/BillingSuccess";
 import BillingCancel from "../components/BillingCancel";
 import FeedbackForm from "../components/FeedbackForm";
 import Feedbacks from "../pages/admin/Feedbacks";
+import AdminTasks from "../pages/admin/AdminTasks";
+import AddTask from "../pages/admin/AddTask";
 
 const router = createBrowserRouter([
   {
@@ -127,6 +129,8 @@ const router = createBrowserRouter([
           { path: "diagram-questions", element: <QuestionForm /> },
           { path: "create-teacher", element: <CreateNewTeacher /> },
           { path: "school-registration", element: <SchoolRegistration /> },
+          { path: "tasks", element: <AdminTasks /> },
+          { path: "add-task", element: <AddTask /> },
         ],
       },
     ],
